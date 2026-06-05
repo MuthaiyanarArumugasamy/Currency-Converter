@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exchange Rate Calculator</title>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2088931413685380"
+     crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            padding-top: 50px;
+        }
+
+        .box {
+            background: white;   /* WHITE BOX */
+            padding: 20px;
+            width: 300px;
+            margin: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            background: #00c853;
+            padding: 12px;
+            border-radius: 6px;
+            color: white;
+        }
+
+        /* IMPORTANT FIX */
+        input, select {
+            width: 100%;   /* EXACT SAME SIZE */
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            box-sizing: border-box; /* THIS MAKES PERFECT ALIGNMENT */
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: none;
+            background: green;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: darkgreen;
+        }
+
+        footer {
+            margin-top: 30px;
+        }
+
+        footer a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body onload="loadCurrencies()">
+
+<div class="box">
+    <h2>Currency Converter</h2>
+
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <select id="from"></select>
+    <select id="to"></select>
+
+    <button onclick="convert()">Convert</button>
+
+    <h3 id="result"></h3>
+</div>
+
+<footer>
+    <a href="#">About</a> |
+    <a href="#">Privacy Policy</a> |
+    <a href="#">Terms</a> |
+    <a href="#">Contact</a>
+</footer>
+
+<script>
+let allRates = {};
+
+async function loadCurrencies() {
+    let url = "https://api.exchangerate-api.com/v4/latest/USD";
+    let response = await fetch(url);
+    let data = await response.json();
+
+    allRates = data.rates;
+
+    let from = document.getElementById("from");
+    let to = document.getElementById("to");
+
+    for (let currency in allRates) {
+        let option1 = document.createElement("option");
+        let option2 = document.createElement("option");
+
+        option1.value = currency;
+        option1.text = currency;
+
+        option2.value = currency;
+        option2.text = currency;
+
+        from.appendChild(option1);
+        to.appendChild(option2);
+    }
+
+    from.value = "USD";
+    to.value = "INR";
+}
+
+function convert() {
+    let amount = document.getElementById("amount").value;
+    let from = document.getElementById("from").value;
+    let to = document.getElementById("to").value;
+
+    let rate = allRates[to] / allRates[from];
+    let result = amount * rate;
+
+    document.getElementById("result").innerText =
+        `${amount} ${from} = ${result.toFixed(2)} ${to}`;
+}
+</script>
+
+</body>
+</html>
