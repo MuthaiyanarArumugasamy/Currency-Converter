@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Exchange Rate Calculator</title>
+    <title>Currency Converter</title>
 
     <!-- Google AdSense (ONLY ONCE) -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2088931413685380"
-     crossorigin="anonymous"></script>
+    <script async 
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2088931413685380"
+    crossorigin="anonymous"></script>
 
     <!-- Google Verification -->
     <meta name="google-site-verification" content="3xsyf1a0tnCKhm7ULB4YY5tBAgBMRbu9oSljVpej4lE" />
-
-
 
     <style>
         body {
@@ -21,7 +20,7 @@
         }
 
         .box {
-            background: white;   /* WHITE BOX */
+            background: white;
             padding: 20px;
             width: 300px;
             margin: auto;
@@ -36,14 +35,13 @@
             color: white;
         }
 
-        /* IMPORTANT FIX */
         input, select {
-            width: 100%;   /* EXACT SAME SIZE */
+            width: 100%;
             padding: 12px;
             margin: 10px 0;
             border-radius: 6px;
             border: 1px solid #ccc;
-            box-sizing: border-box; /* THIS MAKES PERFECT ALIGNMENT */
+            box-sizing: border-box;
         }
 
         button {
@@ -89,16 +87,15 @@
     <h3 id="result"></h3>
 </div>
 
+<!-- ✅ FOOTER (CORRECT PLACE) -->
 <footer>
-    
-</footer>
-
-<script><footer>
     <a href="about.html">About</a> |
     <a href="privacy.html">Privacy Policy</a> |
     <a href="terms.html">Terms</a> |
     <a href="contact.html">Contact</a>
 </footer>
+
+<script>
 let allRates = {};
 
 async function loadCurrencies() {
